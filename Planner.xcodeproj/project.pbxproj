@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E25B592C1E22D0AA0043DB9E /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25B592B1E22D0AA0043DB9E /* Task.swift */; };
+		E25B59321E22D51F0043DB9E /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25B59311E22D51F0043DB9E /* ListViewController.swift */; };
 		E29480A21E2221E60020293A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29480A11E2221E60020293A /* AppDelegate.swift */; };
 		E29480A41E2221E60020293A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29480A31E2221E60020293A /* ViewController.swift */; };
 		E29480A71E2221E60020293A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E29480A51E2221E60020293A /* Main.storyboard */; };
@@ -26,6 +28,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E25B592B1E22D0AA0043DB9E /* Task.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
+		E25B59311E22D51F0043DB9E /* ListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		E294809E1E2221E60020293A /* Planner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Planner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E29480A11E2221E60020293A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E29480A31E2221E60020293A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -79,6 +83,8 @@
 			children = (
 				E29480A11E2221E60020293A /* AppDelegate.swift */,
 				E29480A31E2221E60020293A /* ViewController.swift */,
+				E25B592B1E22D0AA0043DB9E /* Task.swift */,
+				E25B59311E22D51F0043DB9E /* ListViewController.swift */,
 				E29480A51E2221E60020293A /* Main.storyboard */,
 				E29480A81E2221E60020293A /* Assets.xcassets */,
 				E29480AA1E2221E60020293A /* LaunchScreen.storyboard */,
@@ -202,6 +208,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				E29480A41E2221E60020293A /* ViewController.swift in Sources */,
+				E25B592C1E22D0AA0043DB9E /* Task.swift in Sources */,
+				E25B59321E22D51F0043DB9E /* ListViewController.swift in Sources */,
 				E29480A21E2221E60020293A /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -343,6 +351,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 9VSHE86NH8;
 				INFOPLIST_FILE = Planner/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Basic.Planner;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -356,6 +365,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 9VSHE86NH8;
 				INFOPLIST_FILE = Planner/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Basic.Planner;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -412,6 +422,7 @@
 				E29480BD1E2221E60020293A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		E29480BE1E2221E60020293A /* Build configuration list for PBXNativeTarget "PlannerTests" */ = {
 			isa = XCConfigurationList;
@@ -420,6 +431,7 @@
 				E29480C01E2221E60020293A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
