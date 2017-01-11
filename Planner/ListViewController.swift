@@ -100,7 +100,7 @@ class ListViewController: UIViewController, UITextFieldDelegate, UITableViewData
     
     @IBAction func addItem(sender: UITextField) {
     
-        let task = Task(name: sender.text!, date: "Today", location: "")
+        let task = Task(name: sender.text!, date: "Today", location: "", start: "", end: "")
         items.append(task!)
         tableView.reloadData()
     
@@ -153,7 +153,7 @@ class ListViewController: UIViewController, UITextFieldDelegate, UITableViewData
     
     private func loadSampleTask() {
     
-        let task = Task(name: "Math Discussion", date: "Thursday", location: "York Hall")
+        let task = Task(name: "Math Discussion", date: "Thursday", location: "York Hall", start: "4:00 PM", end: "4:50 PM")
         
         items.append(task!)
         

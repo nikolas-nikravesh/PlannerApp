@@ -36,7 +36,7 @@ extension UIViewController {
 
 
 
-class ViewController: UIViewController, UITextFieldDelegate {
+class ViewController: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
     
     //MARK: Outlets
     
@@ -45,7 +45,14 @@ class ViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var dateTextField: UITextField!
     @IBOutlet weak var saveButton: UIBarButtonItem!
     @IBOutlet weak var locationTextField: UITextField!
-
+    @IBOutlet weak var startTextField: UITextField!
+    @IBOutlet weak var endTextField: UITextField!
+    @IBOutlet weak var timeStack: UIStackView!
+    
+    //Picker outlets
+    @IBOutlet weak var monthPicker: UIPickerView!
+    @IBOutlet weak var dayPicker: UIPickerView!
+    @IBOutlet weak var yearPicker: UIPickerView!
     
 
     //MARK: Varibles
@@ -53,6 +60,14 @@ class ViewController: UIViewController, UITextFieldDelegate {
     var beganEditing: Bool = false
     
     var task: Task?
+    
+    var monthData: [String] = []
+    
+    var dayData: [String] = []
+    
+    var yearData: [String] = []
+    
+    var fullDate: [String] = []
     
     
     override func viewDidLoad() {
@@ -63,10 +78,33 @@ class ViewController: UIViewController, UITextFieldDelegate {
         self.hideKeyboardWhenTappedAround()
         
         
+        //populate picker data lists
+        monthData = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+        
+        for i in 1...31 {
+            dayData.append("\(i)")
+        }
+        
+        for i in 2017...2030 {
+            yearData.append("\(i)")
+        }
+        
+        fullDate.append(monthData[0])
+        fullDate.append(dayData[0])
+        fullDate.append(yearData[0])
+        
+        
+        monthPicker.tag = 0
+        dayPicker.tag = 1
+        yearPicker.tag = 2
+        
+        
         //adjust the keyboard view when typing
+        
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         
+ 
         textField.delegate = self
         dateTextField.delegate = self
         locationTextField.delegate = self
@@ -78,6 +116,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
             dateTextField.text = task.date
             navigationItem.title = task.name
             locationTextField.text = task.location
+            startTextField.text = task.startTime
+            endTextField.text = task.endTime
         
         }
     }
@@ -102,7 +142,49 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
     
     
-    //MARK: Actions
+    //MARK: Picker Methods
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        if pickerView.tag == 0 {
+            return monthData.count
+        } else if pickerView.tag == 1 {
+            return dayData.count
+        } else if pickerView.tag == 2 {
+            return yearData.count
+        } else {
+            fatalError()
+        }
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        if pickerView.tag == 0 {
+            return monthData[row]
+        } else if pickerView.tag == 1 {
+            return dayData[row]
+        } else if pickerView.tag == 2 {
+            return yearData[row]
+        } else {
+            fatalError()
+        }
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        if pickerView.tag == 0 {
+            fullDate[0] = monthData[row]
+        } else if pickerView.tag == 1 {
+            fullDate[1] = dayData[row]
+        } else if pickerView.tag == 2 {
+            fullDate[2] = yearData[row]
+        } else {
+            fatalError()
+        }
+        
+        dateTextField.text = fullDate[0] + " " + fullDate[1] + ", " + fullDate[2]
+    }
     
     
     
@@ -127,9 +209,11 @@ class ViewController: UIViewController, UITextFieldDelegate {
         
         let date: String = dateTextField.text ?? ""
         let location: String = locationTextField.text ?? ""
-        
+        let start: String = startTextField.text ?? ""
+        let end: String = endTextField.text ?? ""
 
-        task = Task(name: name, date: date, location: location)
+
+        task = Task(name: name, date: date, location: location, start: start, end: end)
         
     }
     
@@ -139,7 +223,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     @objc func keyboardWillShow(notification: NSNotification) {
     
         
-        if locationTextField.isEditing {
+        if startTextField.isEditing || endTextField.isEditing {
         
             if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
                 if view.frame.origin.y == 0{
@@ -152,12 +236,13 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
         }
         
+        
     }
     
     @objc func keyboardWillHide(notification: NSNotification) {
         
         
-        if locationTextField.isEditing {
+        if startTextField.isEditing || endTextField.isEditing {
         
             if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
                 if view.frame.origin.y != 0 {
@@ -171,6 +256,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         }
         
     }
+    
     
 }
 
