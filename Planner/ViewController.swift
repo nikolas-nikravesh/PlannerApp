@@ -112,12 +112,14 @@ class ViewController: UIViewController, UITextFieldDelegate, UIPickerViewDelegat
         
         if let task = task {
             
+            
             textField.text = task.name
             dateTextField.text = task.date
             navigationItem.title = task.name
             locationTextField.text = task.location
             startTextField.text = task.startTime
             endTextField.text = task.endTime
+            
         
         }
     }

@@ -35,6 +35,8 @@ class ListViewController: UIViewController, UITextFieldDelegate, UITableViewData
         loadSampleTask()
         
         
+        tableView.backgroundColor = UIColor(red: 224, green: 224, blue: 224, alpha: 1)
+        
         
     }
 
@@ -110,6 +112,7 @@ class ListViewController: UIViewController, UITextFieldDelegate, UITableViewData
         return rowHeight
     }
     
+    
     //delete methods
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
@@ -124,6 +127,7 @@ class ListViewController: UIViewController, UITextFieldDelegate, UITableViewData
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
     }
+    
     
     
     //MARK: Actions
